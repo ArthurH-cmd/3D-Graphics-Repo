@@ -9,6 +9,8 @@ namespace MathHelper
 
 
 	bool CheckEqual(float a, float b);
+
+	void FlattenVectorScreenCoord(Vector3& v);
 	float MagnitudeSquared(const Vector2& v);
 	float MagnitudeSquared(const Vector3& v);
 

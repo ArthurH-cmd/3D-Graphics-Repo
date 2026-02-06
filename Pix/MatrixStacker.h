@@ -21,4 +21,6 @@ public:
 private:
     std::vector<Matrix4> mMatrices;
     Matrix4 mCombinedTransform;
+	bool mDrawBegin = false;
+	bool mApplyTransforms = false;
 };

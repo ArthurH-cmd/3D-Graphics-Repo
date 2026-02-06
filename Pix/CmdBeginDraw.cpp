@@ -20,6 +20,7 @@ bool CmdBeginDraw::Execute(const std::vector<std::string>& params)
 		return false;
 	}
 
+	bool applyTransform = params.size() > 1 && params[1] == "true";
 	// tell primitives manager to start storing data
 	return PrimitivesManager::Get()-> BeginDraw(topology);
 }
