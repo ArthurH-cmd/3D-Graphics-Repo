@@ -5,4 +5,4 @@
   imgui_impl_win32.cpp
   imgui_widgets.cpp
   Generating Code...
-  ImGui.vcxproj -> C:\Users\arthu\Desktop\PixPainter-3D_Graphics-\x64\Debug\ImGui.lib
+  ImGui.vcxproj -> C:\Users\arthu\Desktop\Repos\3D-Graphics-Repo\x64\Debug\ImGui.lib
