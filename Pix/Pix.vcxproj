@@ -175,6 +175,7 @@
     <ClCompile Include="CmdBeginDraw.cpp" />
     <ClCompile Include="CmdDrawPixel.cpp" />
     <ClCompile Include="CmdEndDraw.cpp" />
+    <ClCompile Include="CmdMatrixStack.cpp" />
     <ClCompile Include="CmdSetColor.cpp" />
     <ClCompile Include="CmdSetFillMode.cpp" />
     <ClCompile Include="CmdSetResolution.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="CommandDictionary.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="MatrixStacker.cpp" />
     <ClCompile Include="PixEditor.cpp" />
     <ClCompile Include="PrimitivesManager.cpp" />
     <ClCompile Include="Rasterizer.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="CmdBeginDraw.h" />
     <ClInclude Include="CmdDrawPixel.h" />
     <ClInclude Include="CmdEndDraw.h" />
+    <ClInclude Include="CmdMatrixStack.h" />
     <ClInclude Include="CmdSetColor.h" />
     <ClInclude Include="CmdSetFillMode.h" />
     <ClInclude Include="CmdSetResolution.h" />
@@ -214,6 +217,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="Matrix4.h" />
+    <ClInclude Include="MatrixStacker.h" />
     <ClInclude Include="PixEditor.h" />
     <ClInclude Include="PrimitivesManager.h" />
     <ClInclude Include="Rasterizer.h" />
