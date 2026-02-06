@@ -1,0 +1,5 @@
+D:\PeterStuff\X\Main\X\External\DirectXTK\Audio\Bin\Desktop_2019\x64\Debug\DirectXTKAudioWin8.lib
+D:\PeterStuff\X\Main\X\External\DirectXTK\Audio\Bin\Desktop_2019\x64\Debug\DirectXTKAudioWin8.pdb
+C:\LASALLE SECOND YEAR\3DGraphAndApp\X\External\DirectXTK\Audio\Bin\Desktop_2019\x64\Debug\DirectXTKAudioWin8.lib
+C:\Users\arthu\Desktop\Repos\PixPainter-Graphics-\X\External\DirectXTK\Audio\Bin\Desktop_2019\x64\Debug\DirectXTKAudioWin8.lib
+C:\Users\arthu\Desktop\PixPainter-3D_Graphics-\X\External\DirectXTK\Audio\Bin\Desktop_2019\x64\Debug\DirectXTKAudioWin8.lib
