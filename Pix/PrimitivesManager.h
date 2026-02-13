@@ -9,10 +9,23 @@ enum class Topology
 	Triangle
 };
 
+enum class CullMode
+{
+	None,
+	Back,
+	Front
+};
+
+
+
 class PrimitivesManager
 {
 public:
 	static PrimitivesManager* Get();
+
+	void OnNewFrame();
+	void SetCullMode(CullMode mode);
+
 
 	// Start accepting vertices
 	bool BeginDraw(Topology topology,bool applyTransform = false);
@@ -25,6 +38,7 @@ private:
 
 	std::vector<Vertex> mVertexBuffer;
 	Topology mTopology = Topology::Point;
+	CullMode mCullMode = CullMode::None;
 	bool mDrawBegin = false;
 	bool mApplyTransform = false;
 };

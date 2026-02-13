@@ -11,6 +11,8 @@
 #include "CmdSetFillMode.h"
 #include "CmdSetViewport.h"
 #include "CmdMatrixStack.h"
+#include "CmdSetCullMode.h"
+#include "CmdEnableDepthBuffer.h"
 
 CommandDictionary* CommandDictionary::Get()
 {
@@ -29,6 +31,7 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdVarFloat>();
 
 	// Rasterization commands
+	RegisterCommand<CmdEnableDepthBuffer>();
 	RegisterCommand<CmdDrawPixel>();
 
 	// Register command set color
@@ -45,6 +48,7 @@ CommandDictionary::CommandDictionary()
 	RegisterCommand<CmdPushRotationZ>();
 	RegisterCommand<CmdPushScaling>();
 	RegisterCommand<CmdPopMatrix>();
+	RegisterCommand<CmdSetCullMode>();
 }
 
 TextEditor::LanguageDefinition CommandDictionary::GenerateLanguageDefinition()
