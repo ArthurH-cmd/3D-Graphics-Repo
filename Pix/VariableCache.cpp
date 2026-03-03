@@ -10,7 +10,7 @@ struct Variable
 	std::string name;
 };
 
-struct FloatVar : public Variable
+struct FloatVar : Variable
 {
 	void ShowUI() override
 	{
@@ -30,23 +30,20 @@ struct IntVar : public Variable
 		ImGui::DragInt(name.c_str(), &value, speed, min, max);
 	}
 
-	int value = 0.0f;
+	int value = 0;
 	float speed = 1.0f;
-	int min = 0.0f;
-	int max = 1.0f;
+	int min = 0;
+	int max = 1;
 };
 
-struct BoolVar : public Variable
+struct BoolVariable : public Variable
 {
 	void ShowUI() override
 	{
 		ImGui::Checkbox(name.c_str(), &value);
 	}
-
-	bool value = 0.0f;
-
+	bool value = false;
 };
-
 
 VariableCache* VariableCache::Get()
 {
@@ -68,9 +65,9 @@ void VariableCache::AddFloat(const std::string& name, float value, float speed, 
 {
 	// Add the variable if it does not already exist
 	auto iter = std::find_if(mVariables.begin(), mVariables.end(), [name](auto& var)
-	{
-		return var.name == name;
-	});
+		{
+			return var->name == name;
+		});
 	if (iter == mVariables.end())
 	{
 		auto floatVar = std::make_unique<FloatVar>();
@@ -88,82 +85,89 @@ float VariableCache::GetFloat(const std::string& param)
 	if (IsVarName(param))
 	{
 		auto iter = std::find_if(mVariables.begin(), mVariables.end(), [param](auto& var)
-		{
-			return var.name == param;
-		});
+			{
+				return var->name == param;
+			});
 		if (iter != mVariables.end())
 		{
-			return static_cast <FloatVar*>((*iter).get())->value;
+			return static_cast<FloatVar*>((*iter).get())->value;
 		}
 	}
 
 	return stof(param);
 }
 
-
-void VariableCache::AddInt(const std::string& name, int value, float speed, int min, int max)
-{ 
-	auto iter = std::find_if(mVariables.begin(), mVariables.end(), [name](auto& var)
-	{
-		return var.name == name;
-	});
-
-	if (iter == mVariables.end())
-	{
-		auto IntVar = std::make_unique<IntVar>();
-		IntVar->name = name;
-		IntVar->value = value;
-		IntVar->speed = speed;
-		IntVar->min = min;
-		IntVar->max = max;
-		mVariables.emplace_back(std::move(IntVar));
-	}
-}
-int  VariableCache::GetInt(const std::string& param)
-{ 
-	if (IsVarName(param))
-	{
-		auto iter = std::find_if(mVariables.begin(),mVariables.end(),[param](auto&var))
-		{
-			return var.name == param;
-		});
-		if (iter != mVariables.end())
-		{
-			return static_cast <IntVar*>((*iter).get())->value;
-		}
-	}
-}
-void  VariableCache::AddBool(const std::string& name, bool value)
-{ 
-	auto iter = std::find_if(mVariables.begin(), mVariables.end(), [name](auto& var)
-	{
-		{
-			return var.name == name;
-		});
-		if (iter == mVariables.end())
-		{
-			auto BoolVar = std::make_unique<BoolVar>();
-			BoolVar->name = name;
-			BoolVar->value = value;
-			mVariables.emplace_back(std::move(BoolVar));
-		}
-	}
-}
-bool  VariableCache::GetBool(const std::string& param)
-{ 
-		if (IsVarName[param])
-		{
-			auto iter = std::find_if(mVariables.begin(),mVariables.end(),[param](auto& var))
-		}
-}
-
 void VariableCache::ShowEditor()
 {
-	if (mFloatVars.empty())
+	if (mVariables.empty())
 		return;
 
 	ImGui::Begin("Variables", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-	for (auto& var : mFloatVars)
-		ImGui::DragFloat(var.name.c_str(), &var.value, var.speed, var.min, var.max);
+	for (auto& var : mVariables)
+		var->ShowUI();
 	ImGui::End();
+}
+
+void VariableCache::AddInt(const std::string& name, int value, float speed, int min, int max)
+{
+	auto iter = std::find_if(mVariables.begin(), mVariables.end(), [name](auto& var)
+		{
+			return var->name == name;
+		});
+
+	if (iter == mVariables.end())
+	{
+		auto intVar = std::make_unique<IntVar>();
+		intVar->name = name;
+		intVar->value = value;
+		intVar->speed = speed;
+		intVar->min = min;
+		intVar->max = max;
+		mVariables.emplace_back(std::move(intVar));
+	}
+}
+int VariableCache::GetInt(const std::string& param)
+{
+	if (IsVarName(param))
+	{
+		auto iter = std::find_if(mVariables.begin(), mVariables.end(), [param](auto& var)
+			{
+				return var->name == param;
+			});
+		if (iter != mVariables.end())
+		{
+			return static_cast<IntVar*>((*iter).get())->value;
+		}
+	}
+	return stoi(param);
+}
+
+void VariableCache::AddBool(const std::string& name, bool value)
+{
+	auto iter = std::find_if(mVariables.begin(), mVariables.end(), [name](auto& var)
+		{
+			return var->name == name;
+		});
+	if (iter == mVariables.end())
+	{
+		auto boolVar = std::make_unique<BoolVariable>();
+		boolVar->name = name;
+		boolVar->value = value;
+		mVariables.emplace_back(std::move(boolVar));
+	}
+}
+bool VariableCache::GetBool(const std::string& param)
+{
+	if (IsVarName(param))
+	{
+		auto iter = std::find_if(mVariables.begin(), mVariables.end(), [param](auto& var)
+			{
+				return var->name == param;
+			});
+		if (iter != mVariables.end())
+		{
+			return static_cast<BoolVariable*>((*iter).get())->value;
+		}
+	}
+	return param == "true";
 }

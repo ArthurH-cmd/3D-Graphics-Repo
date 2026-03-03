@@ -4,25 +4,25 @@
 class Camera
 {
 public:
-
 	static Camera* Get();
 
 	void OnNewFrame();
 	void SetPosition(const Vector3& pos);
 	void SetDirection(const Vector3& dir);
-    void SetNearPlane(float nearPlane);
-    void SetFarPlane(float farPlane);
-    void SetFOV(float fov);
+	void SetNearPlane(float near);
+	void SetFarPlane(float far);
+	void SetFOV(float fov);
 
-    Matrix4 GetViewMatrix() const;
-    Matrix4 GetProjectionMatrix() const;
+	Matrix4 GetViewMatrix() const;
+	Matrix4 GetProjectionMatrix() const;
 
+
+	const Vector3& GetPosition() const;
+	const Vector3& GetDirection() const;
 private:
-    Vector3 mPosition;
-    Vector3 mDirection;
-    float mNearPlane;
-    float mFarPlane;
-    float mFOV;
+	Vector3 mPosition;
+	Vector3 mDirection;
+	float mNearPlane;
+	float mFarPlane;
+	float mFOV;
 };
-
-

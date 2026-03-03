@@ -3,12 +3,11 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <cfloat>
+#include <climits>
 
 
-struct Variable
-{
-
-};
+struct Variable;
 
 class VariableCache
 {
